@@ -1,15 +1,13 @@
 package com.plcoding.stateflow
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.plcoding.stateflow.databinding.ActivityMainBinding
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 class MainActivity : AppCompatActivity() {
@@ -26,8 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
             viewModel.login(
-                    binding.etUsername.text.toString(),
-                    binding.etPassword.text.toString()
+                binding.etUsername.text.toString(),
+                binding.etPassword.text.toString()
             )
         }
 
@@ -36,17 +34,17 @@ class MainActivity : AppCompatActivity() {
                 when (it) {
                     is MainViewModel.LoginUiState.Success -> {
                         Snackbar.make(
-                                binding.root,
-                                "Successfully logged in",
-                                Snackbar.LENGTH_LONG
+                            binding.root,
+                            "Successfully logged in",
+                            Snackbar.LENGTH_LONG
                         ).show()
                         binding.progressBar.isVisible = false
                     }
                     is MainViewModel.LoginUiState.Error -> {
                         Snackbar.make(
-                                binding.root,
-                                it.message,
-                                Snackbar.LENGTH_LONG
+                            binding.root,
+                            it.message,
+                            Snackbar.LENGTH_LONG
                         ).show()
                         binding.progressBar.isVisible = false
                     }
